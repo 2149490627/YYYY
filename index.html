@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        梦境入口
+    </title>
+
+    <link rel="icon" href="https://s1.chu0.com/src/img/png/c1/c1f751316c7d495db3440901bc1a62c5.png?e=2051020800&token=1srnZGLKZ0Aqlz6dk7yF4SkiYf4eP-YrEOdM1sob:dS7TXrS9P2gd0XH4hNICKF9qv5k=" type="image/png">
+
+    <style>
+
+        /* 方法 1：隐藏整个页面的滚动条（推荐） */
+        html, body {
+            margin: 0; /* 移除默认边距 */
+            padding: 0; /* 移除默认内边距 */
+            overflow-x: hidden; /* 隐藏横向滚动条 */
+            overflow-y: hidden; /* 隐藏横向滚动条 */
+
+            height: 100%; /* 确保 body 占满整个视口 */
+            width: 100%; /* 确保 body 占满整个视口宽度 */
+        }
+    </style>
+
+    <!--<script>
+        // 只在需要时清理缓存（比如首次访问或特定条件下）
+        if (!sessionStorage.getItem('cacheCleared')) {
+            if ('caches' in window) caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
+            localStorage.clear();
+            sessionStorage.setItem('cacheCleared', 'true');
+            // 移除 location.reload(true) 避免循环刷新
+        }
+    </script>-->
+
+</head>
+
+<body style="background-image: url('background/light.jpg');">
+
+    <div id="container" style="width:960px">
+
+        <!-- -------------------------------------------------------------------------- -->
+
+        <iframe id="my-iframe"
+                src="/WWWW/index.html"
+                style="position: absolute; border: none;"></iframe>
+
+        <script>
+            const iframe = document.getElementById('my-iframe');  // 1. 获取 iframe 元素
+            iframe.style.left = '-350px';                          // 2. 设置 iframe 的 left 位置
+            iframe.style.top = '-200px';                            // 3. 设置 iframe 的 top 位置
+            iframe.style.width = '1940px';                         // 4. 设置 iframe 的宽度
+            iframe.style.height = '1080px';                        // 5. 设置 iframe 的高度
+        </script>
+
+        <!-- --------------------------------------------------------------------------Unity-->
+
+        <style>
+            body {
+                margin: 0; /* 移除默认边距 */
+                height: 100vh; /* 确保 body 占满整个视口高度 */
+                /* 背景图片设置 */
+                background-image: url('background/light.jpg'); /* 替换为你的图片路径 */
+                background-size: cover; /* 图片覆盖整个容器，保持比例 */
+                background-repeat: no-repeat; /* 防止图片重复 */
+                background-position: center; /* 图片居中显示 */
+                background-attachment: fixed; /* 可选：背景固定，不随滚动移动 */
+            }
+        </style>
+
+        <!-- --------------------------------------------------------------------------背景相关-->
+
+        <img src="https://s1.chu0.com/src/img/gif/4f/4f38d88c9fbd472f9fd74902eeba410b.gif?e=2051020800&token=1srnZGLKZ0Aqlz6dk7yF4SkiYf4eP-YrEOdM1sob:VwIfXgWfPYtd_Ioczx0iAN0At00="
+             alt="无法加载"
+             width="100"
+             style="
+        position: fixed;
+        top: 500px;
+        right: 20px;
+    ">
+        <!-- --------------------------------------------------------------------------标签页-->
+
+        <script>
+            // 极简兼容性检测
+            // 检查三个关键条件，如果任意一个不满足就显示兼容性警告
+
+            if (!document.createElement('canvas').getContext('webgl') ||  // 1. 检查WebGL支持
+                typeof Promise === 'undefined' ||                         // 2. 检查Promise支持
+                navigator.userAgent.includes('MSIE')) {                   // 3. 检查是否为IE浏览器
+
+                // 如果上述任一条件为真（即浏览器不兼容），则显示警告元素
+                   alert('⚠️ 您的浏览器不兼容webgl，请使用现代浏览器访问，或下载pc端');
+            }
+        </script>
+
+    </div>
+</body>
+
+</html>
+
