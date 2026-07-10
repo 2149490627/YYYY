@@ -1,250 +1,108 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
+
+<!-- 头部 -->
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>黑白视频播放器 - 左侧列表</title>
+    <meta charset="utf-8">
+    <title>摆渡人(runoob.com)</title>
+
+    <link rel="icon" href="测试图片/活动图标素材.png" type="image/png">
+
+    <title>简单按钮示例</title>
     <style>
-        /* 全局重置与背景 */
-        body {
-            background-image: url('../../background/light.jpg'); /* ← 替换为你自己的图片名 */
-            background-size: cover; /* 等比缩放填满屏幕 */
-            background-position: center; /* 居中显示 */
-            background-repeat: no-repeat; /* 不重复平铺 */
-            background-attachment: fixed; /* 可选：滚动时背景固定 */
-            margin: 0;
-            padding: 0;
-            min-height: 100vh; /* 推荐用 min-height 防止内容超出 */
-            display: flex;
-            color: #fff;
-            font-family: "Helvetica", "Arial", sans-serif;
+        /* 按钮基础样式 */
+        #myButton {
+            position: fixed; /* 固定定位 */
+            right: 610px; /* 距离右侧 20px */
+            bottom: 200px; /* 距离底部 20px */
         }
 
-
-
-        /* 左右布局容器 */
-        .container {
-            width: 100%;
-            display: flex;
-            min-height: 100vh;
+        #myButton {
+            padding: 10px 20px; /* 上下内边距10px，左右内边距20px */
+            font-size: 16px; /* 文字大小 */
+            color: darkmagenta; /* 文字颜色 */
+            background-color: wheat; /* 背景颜色（蓝色） */
+            border: none; /* 移除边框 */
+            border-radius: 5px; /* 圆角 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+            transition: background-color 0.3s; /* 背景色过渡动画 */
         }
 
-        /* 左侧：视频列表区域 */
-        .sidebar {
-            width: 200px;
-            background-color: #111;
-            border-right: 1px solid #333;
-            padding: 20px;
-            overflow-y: auto; /* 超出可滚动 */
-        }
-
-            .sidebar h2 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-                text-align: center;
+            /* 鼠标悬停效果 */
+            #myButton:hover {
+                background-color: #0056b3; /* 悬停时背景变深 */
             }
-
-        /* 视频列表样式 */
-        .video-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-            .video-list li {
-                padding: 12px 15px;
-                border-bottom: 1px solid #333;
-                cursor: pointer;
-                transition: background-color 0.2s;
-                font-size: 14px;
-            }
-
-                .video-list li:hover {
-                    background-color: #333;
-                }
-
-                .video-list li.active {
-                    background-color: #555;
-                    font-weight: bold;
-                }
-
-        /* 上传按钮区域 */
-        .upload-area {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-            .upload-area button {
-                background-color: #fff;
-                color: #000;
-                border: none;
-                padding: 10px 16px;
-                font-size: 14px;
-                cursor: pointer;
-                border-radius: 6px;
-                transition: all 0.3s;
-            }
-
-                .upload-area button:hover {
-                    background-color: #ddd;
-                    transform: scale(1.05);
-                }
-
-        /* 隐藏文件输入框 */
-        #fileInput {
-            display: none;
-        }
-
-        /* 右侧：视频播放区域 */
-        .player-area {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-            .player-area h2 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-            }
-
-        video {
-            width: 100%;
-            max-width: 720px;
-            height: auto;
-            border-radius: 8px;
-            background-color: #000;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .placeholder {
-            color: #aaa;
-            font-style: italic;
-            margin-top: 50px;
-        }
     </style>
 </head>
-<body>
 
-    <!-- 整体左右结构 -->
-    <div class="container">
+<!-- 身体 -->
+<body style="background-image: url('测试图片/虚空角色背景素材.jpg');">
+    <!-- 背景设置 -->
+    <style>
+        body {
+            margin: 0; /* 移除默认边距 */
+            height: 100vh; /* 确保 body 占满整个视口高度 */
+            /* 背景图片设置 */
+            background-image: url('background/light.jpg'); /* 替换为你的图片路径 */
+            background-size: cover; /* 图片覆盖整个容器，保持比例 */
+            background-repeat: no-repeat; /* 防止图片重复 */
+            background-position: center; /* 图片居中显示 */
+            background-attachment: fixed; /* 可选：背景固定，不随滚动移动 */
+        }
+    </style>
 
-        <!-- 左侧：视频列表 -->
-        <div class="sidebar">
-            <h2>📹 视频列表</h2>
-
-            <!-- 视频文件选择器（隐藏） -->
-            <input type="file" id="fileInput" accept="video/*" />
-
-            <!-- 显示所有已上传的视频 -->
-            <ul class="video-list" id="videoList">
-                <!-- 动态插入视频项 -->
-            </ul>
-
-            <!-- 上传按钮 -->
-            <div class="upload-area">
-                <button onclick="document.getElementById('fileInput').click();">
-                    + 添加视频
-                </button>
-            </div>
-        </div>
-
-        <!-- 右侧：视频播放器 -->
-        <div class="player-area">
-            <h2>▶️ 播放器</h2>
-            <div id="videoContainer">
-                <p class="placeholder">上传</p>
-            </div>
-        </div>
-
-    </div>
+    <!-- 按钮HTML结构 -->
+    <button id="myButton">下载</button>
 
     <script>
-        // 获取关键 DOM 元素
-        const fileInput = document.getElementById('fileInput');
-        const videoList = document.getElementById('videoList');
-        const videoContainer = document.getElementById('videoContainer');
+        // 获取按钮元素
+        const button = document.getElementById('myButton');
 
-        // 存储所有视频对象 { name: 'xxx.mp4', url: 'blob:...' }
-        let videos = [];
-        let currentIndex = -1; // 当前选中的视频索引
+        // 定义点击事件处理函数
+        button.addEventListener('click', function () {
 
-        // 监听文件选择变化
-        fileInput.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (!file) return;
+            // 1. 创建 <a> 元素
+            const link = document.createElement('a');
 
-            // 检查是否为视频
-            if (!file.type.startsWith('video/')) {
-                alert('⚠️ 请选择一个有效的视频文件！');
-                return;
-            }
+            // 2. 设置相对路径（确保图片在本地服务器可访问）
+            link.href = '测试图片/虚空角色背景素材.jpg'; // 相对于当前 HTML 文件的路径
 
-            // 使用 FileReader 读取为 Blob URL
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const videoUrl = event.target.result;
+            // 3. 设置下载文件名
+            link.download = '虚空角色背景素材.jpg';
 
-                // 将视频信息存入数组
-                videos.push({
-                    name: file.name,
-                    url: videoUrl
-                });
+            // 4. 隐藏并触发下载
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-                // 更新左侧列表
-                renderVideoList();
+            //alert('下载成功！'); // 点击时弹出提示
 
-                // 自动选中并播放新添加的视频
-                playVideo(videos.length - 1);
-            };
-
-            reader.readAsDataURL(file);
-
-            // 清空 input，允许重复上传同名文件
-            fileInput.value = '';
         });
-
-        // 渲染左侧视频列表
-        function renderVideoList() {
-            videoList.innerHTML = ''; // 清空重新渲染
-
-            videos.forEach((video, index) => {
-                const li = document.createElement('li');
-                li.textContent = video.name;
-
-                // 如果是当前正在播放的视频，加 active 样式
-                if (index === currentIndex) {
-                    li.classList.add('active');
-                }
-
-                // 点击播放该视频
-                li.onclick = () => playVideo(index);
-                videoList.appendChild(li);
-            });
-        }
-
-        // 播放指定索引的视频
-        function playVideo(index) {
-            const video = videos[index];
-            if (!video) return;
-
-            // 更新当前索引
-            currentIndex = index;
-
-            // 更新播放区域
-            videoContainer.innerHTML = `
-            <video controls autoplay>
-              <source src="${video.url}" type="video/mp4">
-              您的浏览器不支持 video 标签。
-            </video>
-          `;
-
-            // 重新渲染列表以更新高亮状态
-            renderVideoList();
-        }
     </script>
 
+    <!-- 装饰图 -->
+    <h1>摆渡人</h1>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh; /* 让 body 占满整个视口高度 */
+            
+            /* 启用 Flex 布局 */
+            display: flex;
+            
+            /* 水平居中 */
+            justify-content: center;
+
+        }
+        h1 {
+            margin: 0; /* 移除 h1 默认的外边距 */
+            /* 方法 1：直接用 margin-top 控制距离顶部 */
+            margin-top: 100px;
+            /* 可选：调整文字颜色、大小等 */
+            color: white;
+            font-size: 90px;
+        }
+    </style>
 </body>
 </html>
